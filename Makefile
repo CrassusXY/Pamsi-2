@@ -2,20 +2,20 @@ TRGDIR=./
 OBJ=./obj
 CPPFLAGS= -c -g -Wall -pedantic -std=c++17 -iquote inc
 
-__start__: pri.out
-	./pri.out
+__start__: rank.out
+	./rank.out
 
-pri.out: ${OBJ} ${OBJ}/main.o ${OBJ}/queue.o
-	g++ -o pri.out ${OBJ}/main.o ${OBJ}/queue.o -lpthread
+rank.out: ${OBJ} ${OBJ}/main.o ${OBJ}/MovieList.o
+	g++ -o rank.out ${OBJ}/main.o ${OBJ}/MovieList.o -lpthread
 
 ${OBJ}:
 	mkdir ${OBJ}
 
-${OBJ}/main.o: src/main.cpp inc/queue.hh
+${OBJ}/main.o: src/main.cpp inc/MovieList.hh
 	g++ ${CPPFLAGS} -o ${OBJ}/main.o src/main.cpp
 
-${OBJ}/queue.o: src/queue.cpp inc/queue.hh inc/node.hh
-	g++ ${CPPFLAGS} -o ${OBJ}/queue.o src/queue.cpp
+${OBJ}/MovieList.o: src/MovieList.cpp inc/MovieList.hh inc/node.hh
+	g++ ${CPPFLAGS} -o ${OBJ}/MovieList.o src/MovieList.cpp
 
 clear:
-	rm -f pri.out ${OBJ}/*
+	rm -f rank.out ${OBJ}/*

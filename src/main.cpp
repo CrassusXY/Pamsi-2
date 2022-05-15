@@ -1,4 +1,4 @@
-#include "queue.hh"
+#include "MovieList.hh"
 #include <algorithm>
 #include <chrono>
 #include <string>
@@ -11,36 +11,21 @@ using std::endl;
 using namespace std::chrono;
 
 int main(){
-    Priority_queue test;
-    std::string message;
-    cout<<endl<<"Co Jan napisał do Ani: ";
-    std::getline(cin, message);
+  std::string name = "test.csv";
+  MovieList test(name, 2);
+  
+  Movie A = test.get_movie(0);
+  Movie B = test.get_movie(1);
 
-    int len=message.length();
-
-    int *randArray = new int[len];
-    int *priorityArray = new int[len];
-
-    for(int i=0; i<len; i++){
-      randArray[i]=i;
-      priorityArray[i]=i;
-    }
-
-    std::random_shuffle(randArray, randArray+len);
-    cout<<endl;
-
-    cout<<"Co otrzymała Ania: ";
-    for(int i=0; i<len; i++){
-        int j=randArray[i];
-        test.push(priorityArray[j], message[j]);
-        cout<<message[j];
-    }
-
-
-    cout<<endl<<endl<<"Po transkrypcji: ";
-    test.pop_all();
-    cout<<endl;
-    return 0;
+  bool tmp = A.is_bigger(B);
+  if(tmp){
+    cout << A.get_title() << " " << A.get_rating() << endl;
+    cout << B.get_title() << " " << B.get_rating() << endl;
+  }
+  else if(!tmp){
+    cout << B.get_title() << " " << B.get_rating() << endl;
+    cout << A.get_title() << " " << A.get_rating() << endl;
+  }
 }
 
 
