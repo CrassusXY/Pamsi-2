@@ -1,4 +1,4 @@
-#include "MovieList.hh"
+#include "sorts.hh"
 #include <algorithm>
 #include <chrono>
 #include <string>
@@ -10,23 +10,81 @@ using std::cin;
 using std::endl;
 using namespace std::chrono;
 
-int main(){
-  std::string name = "test.csv";
-  MovieList test(name, 2);
-  
-  Movie A = test.get_movie(0);
-  Movie B = test.get_movie(1);
+template<typename T>
+void Merge(T *arr, const int & beg, const int & end)
+{
+  int mid = (beg+end)/2;
+  int range = end - beg;
+  Movie *tmp = new Movie[range+1];
+  int z = 0; 
+  int x = beg;
+  int y = mid + 1;
+  while(x<=mid && y<=end){
+    if (arr->get_movie(x) < arr->get_movie(y)){
+      tmp[z] = arr->get_movie(y);
+      y++;
+      z++;
+    }
+    else{
+      tmp[z] = arr->get_movie(x);
+      x++;
+      z++;
+    }
+  }
+  while (x <= mid)
+  {
+    tmp[z] = arr->get_movie(x);
+    x++;
+    z++;
+  }
 
-  bool tmp = A.is_bigger(B);
-  if(tmp){
-    cout << A.get_title() << " " << A.get_rating() << endl;
-    cout << B.get_title() << " " << B.get_rating() << endl;
+  while (y <= end)
+  {
+    tmp[z] = arr->get_movie(y);
+    y++;
+    z++;
   }
-  else if(!tmp){
-    cout << B.get_title() << " " << B.get_rating() << endl;
-    cout << A.get_title() << " " << A.get_rating() << endl;
+
+  for (int i = beg; i <= end; ++i)
+  {
+    arr->set_movie(i, tmp[i-beg]);
   }
+}
+
+template<typename T>
+void MergeSort(T *arr, int beg, int end)
+{
+  if(beg<end){
+    int mid = (beg+end)/2;
+    MergeSort<T>(arr, beg, mid);
+    MergeSort<T>(arr, mid+1, end);
+    Merge<T>(arr, beg, end);
+  }
+}
+
+bool sorted(MovieList *arr, int size)
+{
+  
+  for(int i = 0; i< size; i++){
+    if(arr->get_movie(i)<arr->get_movie(i+1)){
+      return 0;
+    }
+  }
+  return 1;
 }
 
 
 
+
+int main(){
+  std::string name = "projekt2_dane.csv";
+  int size = 99000;
+  MovieList test(name, size);
+  MergeSort<MovieList>(&test, 0, size-1);
+  if(!sorted(&test, size-1)){
+    cout<<"zjebany jesteś"<<endl;
+  }
+  else{
+    cout<<"Jeszcze rok i do Tworek"<<endl;
+  }
+}

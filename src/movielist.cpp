@@ -1,14 +1,23 @@
-#include "MovieList.hh"
+#include "movielist.hh"
 
 
-bool Movie::is_bigger(Movie B){
-    if(get_rating() >= B.get_rating()){
+bool Movie::operator<(Movie arg){
+    if(get_rating() < arg.get_rating()){
         return true;
     }
     else 
         return false;
 }
 
+void Movie::operator=(Movie arg){
+    set_title(arg.get_title());
+    set_rating(arg.get_rating());
+}
+
+MovieList::MovieList(int size){
+    list = new Movie[size];
+    leng = size; 
+}
 
 MovieList::MovieList(const std::string & name){
     std::fstream fin;
@@ -64,6 +73,7 @@ MovieList::MovieList(const std::string & name){
     }
     std::cout<<"Wczytano: "<<val<<" prawidłowych wierszy"<<std::endl;
     std::cout<<"Nie wczytano: "<<inval<<" nieprawidłowych wierszy"<<std::endl;
+    leng = rows;
 }
 
 MovieList::MovieList(const std::string & name, int limit){
@@ -80,7 +90,7 @@ MovieList::MovieList(const std::string & name, int limit){
         throw std::logic_error("Cannot open file!");
     } 
 
-    while (getline(fin, line)){
+    while (getline(fin, line) && rows < limit){
         if (isdigit(line.back()))
         {
             rows++;
@@ -116,8 +126,8 @@ MovieList::MovieList(const std::string & name, int limit){
         else{
             inval++;
         }
-        
     }
     std::cout<<"Wczytano: "<<val<<" prawidłowych wierszy"<<std::endl;
     std::cout<<"Nie wczytano: "<<inval<<" nieprawidłowych wierszy"<<std::endl;
+    leng = rows;
 }

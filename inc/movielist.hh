@@ -16,11 +16,14 @@ public:
         rating(rating_),
         title(title_)
         {}
-    Movie(){};
+    Movie(){}
 
     float get_rating(){return rating;};
     std::string get_title(){return title;};
-    bool is_bigger(Movie B);
+    void set_rating(const float & rating_){rating = rating_;};
+    void set_title(const std::string & title_){title = title_;};
+    bool operator< (Movie arg);
+    void operator= (Movie arg);
 };
 
 
@@ -28,10 +31,14 @@ class MovieList
 {
 protected:
     Movie *list;
+    int leng;
 public:
+    MovieList(int size);
     MovieList(const std::string & name);
     MovieList(const std::string & name, int limit);
     Movie get_movie(const int & id){return list[id];};
+    void set_movie(const int & id, Movie arg){list[id].set_rating(arg.get_rating()); list[id].set_title(arg.get_title());};
+    int get_len(){return leng;};
 };
 
 #endif
