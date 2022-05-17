@@ -40,11 +40,12 @@ protected:
 public:
     MovieList() {};
     MovieList(int size);
-    MovieList(const std::string & name);
     MovieList(const std::string & name, int limit);
     Movie get_movie(const int & id){return list[id];};
     void set_movie(const int & id, Movie arg){list[id].set_rating(arg.get_rating()); list[id].set_title(arg.get_title());};
     int get_len(){return leng;};
+    float mean();
+    float mediane();
 };
 
 #endif
