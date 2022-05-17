@@ -23,6 +23,9 @@ public:
     void set_rating(const float & rating_){rating = rating_;};
     void set_title(const std::string & title_){title = title_;};
     bool operator< (Movie arg);
+    bool operator<= (Movie arg);
+    bool operator> (Movie arg);
+    bool operator>= (Movie arg);
     void operator= (Movie arg);
 };
 
@@ -31,8 +34,9 @@ class MovieList
 {
 protected:
     Movie *list;
-    int leng;
+    uint leng;
 public:
+    MovieList() {};
     MovieList(int size);
     MovieList(const std::string & name);
     MovieList(const std::string & name, int limit);

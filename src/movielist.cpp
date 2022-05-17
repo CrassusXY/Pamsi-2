@@ -9,10 +9,41 @@ bool Movie::operator<(Movie arg){
         return false;
 }
 
+bool Movie::operator<=(Movie arg){
+    if(get_rating() <= arg.get_rating()){
+        return true;
+    }
+    else 
+        return false;
+}
+
+bool Movie::operator>(Movie arg){
+    if(get_rating() > arg.get_rating()){
+        return true;
+    }
+    else 
+        return false;
+}
+
+bool Movie::operator>=(Movie arg){
+    if(get_rating() >= arg.get_rating()){
+        return true;
+    }
+    else 
+        return false;
+}
+
 void Movie::operator=(Movie arg){
     set_title(arg.get_title());
     set_rating(arg.get_rating());
 }
+
+
+
+
+
+
+
 
 MovieList::MovieList(int size){
     list = new Movie[size];
@@ -78,7 +109,7 @@ MovieList::MovieList(const std::string & name){
 
 MovieList::MovieList(const std::string & name, int limit){
     std::fstream fin;
-    uint rows = 0, badrows = 0;
+    int rows = 0, badrows = 0;
     std::string line, tmp, num;
     int len = 0, val = 0, inval = 0;
     float rating = 0.0;
@@ -101,6 +132,9 @@ MovieList::MovieList(const std::string & name, int limit){
     }
     
     list = new Movie[rows];
+    if(rows<limit){
+        std::cout<<"Zbyt mało danych w podanym pliku!"<<std::endl;
+    }
     fin.clear();
     fin.seekg(0);
 
