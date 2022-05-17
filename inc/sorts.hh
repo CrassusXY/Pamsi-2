@@ -132,14 +132,15 @@ void quicksort(T *arr, int beg=0, int end=-1)
  * 
  * @param arr tablica ktora ma zostac posortowana
  */
-void bucketsort(MovieList *arr)
+template<typename T>
+void bucketsort(T *arr)
 {
   int len = arr->get_len();
   int a[2]={0};             //zmienna przechowujaca ilosc elementow w poszczegolnych wiadrach
   int b[2];
   float rating;
   int i;
-  MovieList bucket[2];
+  T bucket[2];
 
   for(i=0; i<len; i++){             //zliczam ilosc elementow w wiadrze
     rating = arr->get_movie(i).get_rating();
@@ -194,17 +195,20 @@ for(i=0; i<len; i++){             //wpisuje do srodka wartosci z zalozonych prze
  * @return true jesli jest posortowana
  * @return false jesli nie jest posortowana 
  */
-bool sorted(MovieList *arr)
+
+template<typename T>
+bool sorted(T *arr)
 {
-  cout<<"----------------"<<endl;
   for(int i = 0; i<arr->get_len(); i++){
-    //out<<arr->get_movie(i).get_rating()<<endl;
     if(i+1 == arr->get_len()){
-      return 1;
+        cout<<"Sortowanie odbylo sie pomyslnie."<<endl;
+        return 1;
     }
     else if(arr->get_movie(i)<arr->get_movie(i+1)){
-      return 0;
+        cout<<"Tablica nie jest posortowana!!"<<endl;
+        return 0;
     }
   }
+  cout<<"Sortowanie odbylo sie pomyslnie."<<endl;
   return 1;
 }

@@ -1,7 +1,9 @@
 #ifndef MOVIELIST_HH
 #define MOVIELIST_HH
+#include <algorithm>
+#include <chrono>
+#include <string>
 #include <iostream>
-#include <string> 
 #include <fstream>
 
 

@@ -95,14 +95,13 @@ MovieList::MovieList(const std::string & name){
             num = std::to_string(val);
             line.erase(0, num.length()+1);
             list[val-1] = Movie(rating, line);
-            //std::cout<<tmp<<std::endl;
         }
         else{
             inval++;
         }
         
     }
-    std::cout<<"Wczytano: "<<val<<" prawidłowych wierszy"<<std::endl;
+    std::cout<<std::endl<<"Wczytano: "<<val<<" prawidłowych wierszy"<<std::endl;
     std::cout<<"Nie wczytano: "<<inval<<" nieprawidłowych wierszy"<<std::endl;
     leng = rows;
 }
@@ -161,7 +160,7 @@ MovieList::MovieList(const std::string & name, int limit){
             inval++;
         }
     }
-    std::cout<<"Wczytano: "<<val<<" prawidłowych wierszy"<<std::endl;
+    std::cout<<std::endl<<"Wczytano: "<<val<<" prawidłowych wierszy"<<std::endl;
     std::cout<<"Nie wczytano: "<<inval<<" nieprawidłowych wierszy"<<std::endl;
     leng = rows;
 }
