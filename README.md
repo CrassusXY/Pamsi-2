@@ -2,9 +2,9 @@
 
 ## Given task
 My task was to sort large list of movies - 'projekt2_dane.csv' - by thier opinion using three diffrent sorting algorithms:
--Merge Sort
--Quick Sort
--Bucket Sort
+- Merge Sort
+- Quick Sort
+- Bucket Sort
 And test their computational complexity.
 
 ## Testing
