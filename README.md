@@ -13,4 +13,4 @@ In addition to test computational complexity, I conducted tests of the execution
 All results are shown in `PAMSI_2.pdf`.
 
 ## Running the program
-After cloning repository simplyt run ` make ` command. Later you can run the program using `./rank.out.
+After cloning the repository simplyt run ` make ` command. Later you can run the program using `./rank.out'.
